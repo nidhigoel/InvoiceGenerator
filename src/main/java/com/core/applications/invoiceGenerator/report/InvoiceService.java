@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.log4j.Log4j2;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
@@ -45,24 +44,52 @@ public class InvoiceService {
       List<InvoiceTableModel> invoiceTableEntries = new ArrayList<>();
       InvoiceTableModel entry = InvoiceTableModel.builder()
           .invoice_table_header_1("DESCRIPTION of Service")
-          .invoice_table_header_2("AMOUNT\\n(Rs.)")
-          .invoice_table_data_col_1("Services towards market research and data analysis for the Month\\n of December 2022")
+          .invoice_table_header_2("AMOUNT\n(Rs.)")
+          .invoice_table_data_col_1(
+              "Services towards market research and data analysis for the Month\n of December 2022")
           .invoice_table_data_col_2("32000.00")
           .total_text_col("TOTAL(Rs.)")
           .total_value_col("32000.00")
           .build();
       invoiceTableEntries.add(entry);
-
+      InvoiceModel invoiceModel = InvoiceModel.builder()
+          .header_text("Tax Services Test")
+          .header_logo_url(
+              "https://firebasestorage.googleapis.com/v0/b/smmconeattendance.appspot.com/o/temp%2Fic_logo_oneattendance2.png?alt=media&token=b2d816b7-a617-45be-968a-6cb9c90a8ade")
+          .header_text("Tax invoice")
+          .invoice_from(
+              "From,\nTanuka Banerjee\nMajheraut, Jagadishpur\nHowrah 711104\nPAN: XXXXXXXX\n")
+          .invoice_number("007")
+          .invoice_date("06/01/2023")
+          .invoice_to(
+              "To,\nSAURAV MAJUMDER MANAGEMENT\nCONSULTING\nUnnayan,Bengal Ambuja Commercial Complex\nXXXXXXXXX,Survey Park,\nKolkata,700075\nGSTN: XXXXXXXXXXXXX\nPAN: XXXXXXXXX\nEmail: saurav @smmc.net.in\n")
+          .invoice_table_header_1("DESCRIPTION of Service")
+          .invoice_table_header_2("AMOUNT\n(Rs.)")
+          .invoice_table_data_col_1(
+              "Services towards market research and data analysis for the Month\n of December 2022")
+          .invoice_table_data_col_2("32000.00 ")
+          .total_text_col("TOTAL(Rs.)")
+          .total_value_col("32000.00")
+          .amount_in_words("Thirty Two Thousand Only")
+          .pay_to(
+              "Name: Central Bank of India\nBank/Branch: Uttarpara,Hoogly\nA/c.No.: XXXXXXXXX\nIFSC Code: XXXXXXXXX\n")
+          .footer_logo_url(
+              "https://firebasestorage.googleapis.com/v0/b/smmconeattendance.appspot.com/o/temp%2Fic_logo_oneattendance2.png?alt=media&token=b2d816b7-a617-45be-968a-6cb9c90a8ade")
+          .footer_text("Thank You")
+          .build();
       // Create an empty datasource.
-      final JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(invoiceTableEntries);
+      final JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(
+          invoiceTableEntries);
+      final JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(
+          Collections.singletonList(invoiceModel));
 
       // Create parameters map.
       final Map<String, Object> parameters = new HashMap<>();
       parameters.put("InvoiceBeanParam", dataSource);
 
       // Render the PDF file
-      JasperReportsUtils.renderAsPdf(report, parameters, new JREmptyDataSource(), pos);
-      log.info("REndered");
+      JasperReportsUtils.renderAsPdf(report, parameters, dataSource1, pos);
+      log.info("Rendered");
       log.info(pdfFile.getAbsolutePath());
 
     } catch (final Exception e) {

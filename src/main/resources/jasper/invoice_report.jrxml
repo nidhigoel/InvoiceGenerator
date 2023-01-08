@@ -68,33 +68,73 @@
 		<field name="total_value_col" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="InvoiceBeanParam" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
-	<parameter name="TestParameter1" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="header_logo_url" class="java.lang.String"/>
+	<field name="header_text" class="java.lang.String"/>
+	<field name="invoice_from" class="java.lang.String"/>
+	<field name="invoice_number" class="java.lang.String"/>
+	<field name="invoice_date" class="java.lang.String"/>
+	<field name="invoice_to" class="java.lang.String"/>
+	<field name="invoice_table_header_1" class="java.lang.String"/>
+	<field name="invoice_table_header_2" class="java.lang.String"/>
+	<field name="invoice_table_data_col_1" class="java.lang.String"/>
+	<field name="invoice_table_data_col_2" class="java.lang.String"/>
+	<field name="total_text_col" class="java.lang.String"/>
+	<field name="total_value_col" class="java.lang.String"/>
+	<field name="amount_in_words" class="java.lang.String"/>
+	<field name="pay_to" class="java.lang.String"/>
+	<field name="footer_logo_url" class="java.lang.String"/>
+	<field name="footer_text" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="100" splitType="Stretch">
+			<textField>
+				<reportElement x="220" y="70" width="100" height="30" uuid="55972a56-7ef4-4303-97a9-22283868a432"/>
+				<textFieldExpression><![CDATA[$F{header_text}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement positionType="Float" x="160" y="9" width="270" height="50" uuid="177e641d-ba7d-40f5-9a32-d47737569f53"/>
+				<imageExpression><![CDATA[$F{header_logo_url}]]></imageExpression>
+			</image>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="108" splitType="Stretch">
+			<textField>
+				<reportElement x="390" y="30" width="150" height="20" uuid="dbe8da50-e8bf-458c-a0c9-65afcd734ba2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DATE:" +  $F{invoice_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="10" width="160" height="20" uuid="84e72e4e-3114-4059-b05f-dc5d9064cbb2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["INVOICE NO." +  $F{invoice_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="20" width="210" height="80" uuid="fb26e4e1-e81f-4525-bf94-3ac531b88a24"/>
+				<textFieldExpression><![CDATA[$F{invoice_from}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="251" splitType="Stretch">
+		<band height="278" splitType="Stretch">
 			<componentElement>
-				<reportElement x="20" y="30" width="519" height="170" uuid="9997f738-c8b1-4ced-9591-f60b07aae389">
+				<reportElement x="5" y="109" width="539" height="169" uuid="9997f738-c8b1-4ced-9591-f60b07aae389">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="InvoiceCollectionDataset" uuid="30811301-365a-466a-8fe2-9a3d879102cc">
+					<datasetRun subDataset="InvoiceCollectionDataset" uuid="87e670d0-43a5-404d-bdf9-d528d3238a3b">
 						<dataSourceExpression><![CDATA[$P{InvoiceBeanParam}]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="420" uuid="18a9e629-37f0-4774-843a-2a396b137054">
@@ -102,12 +142,14 @@
 						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="420" height="30" uuid="2d6321c0-53ba-44aa-84d4-edbdf5733e13"/>
+								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{invoice_table_header_1}]]></textFieldExpression>
 							</textField>
 						</jr:tableHeader>
 						<jr:tableFooter style="Table 1_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="420" height="30" uuid="aa83f3c0-d700-47bd-af75-29d93d23df2f"/>
+								<reportElement x="0" y="0" width="420" height="30" uuid="636071f1-4f5f-4bf9-9074-58644a008dc5"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{total_text_col}]]></textFieldExpression>
 							</textField>
 						</jr:tableFooter>
@@ -123,33 +165,71 @@
 						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="30" uuid="987dbcaf-49f2-40e4-9bdf-6995b0f98950"/>
+								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{invoice_table_header_2}]]></textFieldExpression>
 							</textField>
 						</jr:tableHeader>
 						<jr:tableFooter style="Table 1_TD" height="30" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="30" uuid="01bbce68-2186-4887-9949-0acba856e54f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{total_value_col}]]></textFieldExpression>
 							</textField>
 						</jr:tableFooter>
 						<jr:detailCell style="Table 1_TD" height="100">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="100" uuid="4dacfd8c-7cc0-4a1f-b719-aab7bacef1d6"/>
+								<textElement textAlignment="Right" verticalAlignment="Top"/>
 								<textFieldExpression><![CDATA[$F{invoice_table_data_col_2}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<textField>
+				<reportElement x="10" y="10" width="210" height="80" uuid="ae17a14d-a554-4945-a616-b855498082f3"/>
+				<textFieldExpression><![CDATA[$F{invoice_to}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="121" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="10" width="270" height="20" uuid="a68b1dd4-b380-48bc-87a8-d45f4c7f1285">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1273f6e2-7ba1-478e-8236-071b3a39b60b"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["In Words:" +  $F{amount_in_words}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="30" width="270" height="80" uuid="a68b1dd4-b380-48bc-87a8-d45f4c7f1285">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1273f6e2-7ba1-478e-8236-071b3a39b60b"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Please Pay To:\n" +  $F{pay_to}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="57" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="160" y="3" width="270" height="30" uuid="177e641d-ba7d-40f5-9a32-d47737569f53"/>
+				<imageExpression><![CDATA[$F{footer_logo_url}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="210" y="37" width="180" height="20" uuid="a68b1dd4-b380-48bc-87a8-d45f4c7f1285">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1273f6e2-7ba1-478e-8236-071b3a39b60b"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{footer_text}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>
