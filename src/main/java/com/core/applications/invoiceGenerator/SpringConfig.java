@@ -1,18 +1,16 @@
 package com.core.applications.invoiceGenerator;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringConfig {
 
-//  @Bean
-//  public Docket api() {
-//    return new Docket(DocumentationType.SWAGGER_2)
-//        .select()
-//        .apis(RequestHandlerSelectors.any())
-//        .paths(PathSelectors.any())
-//        .build();
-//  }
+  @Bean
+  public Gson getGson() {
+    return new GsonBuilder().create();
+  }
 
 }
