@@ -1,0 +1,20 @@
+{
+  "invoice_data": {
+    "header_logo_url": "https://firebasestorage.googleapis.com/v0/b/smmconeattendance.appspot.com/o/temp%2Fic_logo_oneattendance2.png?alt=media&token=b2d816b7-a617-45be-968a-6cb9c90a8ade",
+    "header_text": "Tax invoice",
+    "invoice_from": "From,\nTanuka Banerjee\nMajheraut, Jagadishpur\nHowrah 711104\nPAN: XXXXXXXX\n",
+    "invoice_number": "007",
+    "invoice_date": "06/01/2023",
+    "invoice_to": "To,\nSAURAV MAJUMDER MANAGEMENT\nCONSULTING\nUnnayan,Bengal Ambuja Commercial Complex\nXXXXXXXXX,Survey Park,\nKolkata,700075\nGSTN: XXXXXXXXXXXXX\nPAN: XXXXXXXXX\nEmail: saurav @smmc.net.in\n",
+    "invoice_table_header_1": "DESCRIPTION of Service",
+    "invoice_table_header_2": "AMOUNT\n(Rs.)",
+    "invoice_table_data_col_1": "Services towards market research and data analysis for the Month\n of December 2022",
+    "invoice_table_data_col_2": "32000.00 ",
+    "total_text_col": "TOTAL(Rs.)",
+    "total_value_col": "32000.00",
+    "amount_in_words": "Thirty Two Thousand Only",
+    "pay_to": "Name: Central Bank of India\nBank/Branch: Uttarpara,Hoogly\nA/c.No.: XXXXXXXXX\nIFSC Code: XXXXXXXXX\n",
+    "footer_logo_url": "https://firebasestorage.googleapis.com/v0/b/smmconeattendance.appspot.com/o/temp%2Fic_logo_oneattendance2.png?alt=media&token=b2d816b7-a617-45be-968a-6cb9c90a8ade",
+    "footer_text": "Thank You"
+  }
+}
