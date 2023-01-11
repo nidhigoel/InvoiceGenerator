@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -21,25 +20,30 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.jasperreports.JasperReportsUtils;
 
 @Log4j2
 @Service
 public class InvoiceService {
+
   @Autowired
   private Gson gson;
   private final String invoice_template_path = "/jasper/invoice_report.jrxml";
   private static final String logo_path = "/jasper/ic_logo_oneattendance2.png";
 
-  public File generateInvoice(Map<String,String> invoiceDetails) throws IOException, JRException {
+  public File generateInvoice(InvoiceModel invoiceModel) throws IOException, JRException {
     log.info("Inside generate invoice");
     File pdfFile = File.createTempFile("my-invoice", ".pdf");
 
-    String invoiceJson = gson.toJson(invoiceDetails);
-    InvoiceModel invoiceModel = gson.fromJson(invoiceJson, InvoiceModel.class);
-    InvoiceTableModel invoiceTableEntry = gson.fromJson(invoiceJson, InvoiceTableModel.class);
+    InvoiceTableModel invoiceTableEntry = InvoiceTableModel.builder()
+        .invoice_table_header_1(invoiceModel.getInvoice_table_header_1())
+        .invoice_table_header_2(invoiceModel.getInvoice_table_header_2())
+        .invoice_table_data_col_1(invoiceModel.getInvoice_table_data_col_1())
+        .invoice_table_data_col_2(invoiceModel.getInvoice_table_data_col_2())
+        .total_value_col(invoiceModel.getTotal_value_col())
+        .total_text_col(invoiceModel.getTotal_text_col())
+        .build();
 
     List<InvoiceTableModel> invoiceTableEntries = new ArrayList<>();
     invoiceTableEntries.add(invoiceTableEntry);
