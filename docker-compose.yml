@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  invoice-generator-app:
+
+    container_name: invoice-generator-container
+    build:
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8080:8080"
+
+
+
